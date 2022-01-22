@@ -77,3 +77,12 @@
   opacity: 1;
   transition: 0s;
 }
+
+.asyncButton:disabled {
+  color: rgb(112, 76, 182, 0.15);
+}
+.asyncButton:disabled:hover,
+.asyncButton:disabled:focus {
+  border: 2px solid rgba(112, 76, 182, 0);
+}
+

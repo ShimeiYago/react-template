@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mock": "json-server -w db.json --port 3001"
+    "mock": "json-server -w db.json --port 3001",
+    "mock:delay": "json-server -w db.json --port 3001 -d 3000"
   },
   "author": "",
   "license": "ISC",
