@@ -5,14 +5,17 @@ import {
   decrement,
   increment,
   incrementByAmount,
-  incrementAsync,
+  fetchCount,
+  postCount,
   incrementIfOdd,
   selectCount,
+  selectCounterStatus,
 } from 'store/counter/counterSlice';
 import styles from './Counter.module.css';
 
 export function Counter() {
   const count = useAppSelector(selectCount);
+  const counterStatus = useAppSelector(selectCounterStatus);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
@@ -20,6 +23,7 @@ export function Counter() {
 
   return (
     <div>
+      {counterStatus === 'failed' ? <div>Error</div> : null}
       <div className={styles.row}>
         <button
           className={styles.button}
@@ -51,16 +55,24 @@ export function Counter() {
           Add Amount
         </button>
         <button
-          className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
-        >
-          Add Async
-        </button>
-        <button
           className={styles.button}
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
+        </button>
+        <button
+          className={styles.asyncButton}
+          onClick={() => dispatch(fetchCount())}
+          disabled={counterStatus==='loading'}
+        >
+          Fetch
+        </button>
+        <button
+          className={styles.asyncButton}
+          onClick={() => dispatch(postCount(count))}
+          disabled={counterStatus==='loading'}
+        >
+          Post
         </button>
       </div>
     </div>
