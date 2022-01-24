@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { CounterStatus } from 'store/counter/counterSlice';
 import styles from './index.module.css';
 
 export function Renderer(props: Props) {
   const {
     count,
     counterStatus,
-    
+
     decrement,
     increment,
     incrementByAmount,
@@ -25,7 +26,7 @@ export function Renderer(props: Props) {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={decrement}
+          onClick={() => decrement()}
         >
           -
         </button>
@@ -78,7 +79,7 @@ export function Renderer(props: Props) {
 
 export type Props = {
   count: number,
-  counterStatus: string;
+  counterStatus: CounterStatus;
 
   decrement: () => void,
   increment: () => void,

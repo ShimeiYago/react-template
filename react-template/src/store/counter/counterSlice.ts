@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from 'app/store';
 import { getRemoteCount, postRemoteCount } from 'api/counterAPI';
 
+export type CounterStatus = 'idle' | 'loading' | 'failed';
+
 export interface CounterState {
   value: number;
-  status: 'idle' | 'loading' | 'failed';
+  status: CounterStatus;
 }
 
 const initialState: CounterState = {
