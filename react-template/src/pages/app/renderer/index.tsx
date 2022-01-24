@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from 'images/logo.svg';
-import { Counter } from 'components/organisms/counter/Counter';
-import './App.css';
+import { Counter } from 'components/organisms/counter';
+import './index.css';
 
-function App() {
+export function Renderer() {
   return (
     <div className="App">
       <header className="App-header">
@@ -55,4 +55,3 @@ function App() {
   );
 }
 
-export default App;
