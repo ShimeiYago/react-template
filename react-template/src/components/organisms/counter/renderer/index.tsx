@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
+import styles from './index.module.css';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  fetchCount,
-  postCount,
-  incrementIfOdd,
-  selectCount,
-  selectCounterStatus,
-} from 'store/counter/counterSlice';
-import styles from './Counter.module.css';
+export function Renderer(props: Props) {
+  const {
+    count,
+    counterStatus,
+    
+    decrement,
+    increment,
+    incrementByAmount,
+    incrementIfOdd,
+    fetchCount,
+    postCount,
+  } = props;
 
-export function Counter() {
-  const count = useAppSelector(selectCount);
-  const counterStatus = useAppSelector(selectCounterStatus);
-  const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
@@ -28,7 +25,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          onClick={decrement}
         >
           -
         </button>
@@ -36,7 +33,7 @@ export function Counter() {
         <button
           className={styles.button}
           aria-label="Increment value"
-          onClick={() => dispatch(increment())}
+          onClick={() => increment()}
         >
           +
         </button>
@@ -50,26 +47,26 @@ export function Counter() {
         />
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
+          onClick={() => incrementByAmount(incrementValue)}
         >
           Add Amount
         </button>
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
+          onClick={() => incrementIfOdd(incrementValue)}
         >
           Add If Odd
         </button>
         <button
           className={styles.asyncButton}
-          onClick={() => dispatch(fetchCount())}
+          onClick={() => fetchCount()}
           disabled={counterStatus==='loading'}
         >
           Fetch
         </button>
         <button
           className={styles.asyncButton}
-          onClick={() => dispatch(postCount(count))}
+          onClick={() => postCount(count)}
           disabled={counterStatus==='loading'}
         >
           Post
@@ -77,4 +74,16 @@ export function Counter() {
       </div>
     </div>
   );
+}
+
+export type Props = {
+  count: number,
+  counterStatus: string;
+
+  decrement: () => void,
+  increment: () => void,
+  incrementByAmount: (incrementValue: number) => void,
+  incrementIfOdd: (incrementValue: number) => void,
+  fetchCount: () => void,
+  postCount: (postValue:number) => void,
 }
