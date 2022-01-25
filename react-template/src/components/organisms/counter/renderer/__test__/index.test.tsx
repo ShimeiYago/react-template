@@ -1,4 +1,5 @@
 import React from 'react';
+import { create } from 'react-test-renderer'
 import ShallowRenderer from 'react-test-renderer/shallow'
 import { Renderer, Props } from '..';
 
@@ -35,4 +36,15 @@ describe('Shallow Snapshot Tests', () => {
     );
     expect(result).toMatchSnapshot();
   });
+});
+
+test('incrementAmount should change when value is inputted.', () => {
+  const inputValue = 'input value';
+
+  const testInstance = create(<Renderer {...basicProps} />).root;
+  const input = testInstance.findByType('input');
+
+  expect(testInstance.instance.state.incrementAmount).toBe('2');
+  input.props.onChange({target:{value:inputValue}});
+  expect(testInstance.instance.state.incrementAmount).toBe(inputValue);
 });
