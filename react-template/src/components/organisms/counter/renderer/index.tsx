@@ -1,5 +1,5 @@
 import React from 'react';
-import { CounterStatus } from 'store/counter/counterSlice';
+import { CounterStatus } from 'store/counter/model';
 import styles from './index.module.css';
 
 export class Renderer extends React.Component<Props, State> {

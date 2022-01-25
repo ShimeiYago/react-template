@@ -10,7 +10,7 @@ import {
   incrementIfOdd,
   selectCount,
   selectCounterStatus,
-} from 'store/counter/counterSlice';
+} from 'store/counter/slice';
 
 export function Counter() {
   const dispatch = useAppDispatch();
