@@ -2,7 +2,7 @@ import counterReducer, {
   increment,
   decrement,
   incrementByAmount,
-} from './slice';
+} from './counterSlice';
 import { CounterState } from './model';
 
 describe('counter reducer', () => {
