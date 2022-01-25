@@ -1,7 +1,9 @@
-In order to run mock server, please run 
-`npm run mock`.
+This mock API is run with [JSON Server](https://github.com/typicode/json-server).
 
 ## Available Scripts
+### `npm install`
+Install packages.
+
 ### `npm run mock`
 Run mock server.
 
