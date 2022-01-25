@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import logo from 'images/logo.svg';
+import { Counter } from 'components/organisms/counter';
+import './index.css';
 
-function App() {
+export function Renderer() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit '<code>src/pages/app/App.tsx</code>' and save to reload.
         </p>
         <span>
           <span>Learn </span>
@@ -55,4 +55,3 @@ function App() {
   );
 }
 
-export default App;
