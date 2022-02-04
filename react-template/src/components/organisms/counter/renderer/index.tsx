@@ -1,5 +1,4 @@
 import React from 'react';
-import { CounterStatus } from 'store/counter/model';
 import styles from './index.module.css';
 
 export class Renderer extends React.Component<Props, State> {
@@ -10,7 +9,7 @@ export class Renderer extends React.Component<Props, State> {
   render() {
     const {
       count,
-      counterStatus,
+      counterError,
 
       decrement,
       increment,
@@ -24,7 +23,7 @@ export class Renderer extends React.Component<Props, State> {
 
     return (
       <div>
-        {counterStatus === 'failed' ? <div>Error</div> : null}
+        {counterError ? <div>{counterError}</div> : null}
         <div className={styles.row}>
           <button
             className={styles.button}
@@ -64,14 +63,14 @@ export class Renderer extends React.Component<Props, State> {
           <button
             className={styles.asyncButton}
             onClick={() => fetchCount()}
-            disabled={counterStatus==='loading'}
+            disabled={this.props.loading}
           >
             Fetch
           </button>
           <button
             className={styles.asyncButton}
             onClick={() => postCount(count)}
-            disabled={counterStatus==='loading'}
+            disabled={this.props.loading}
           >
             Post
           </button>
@@ -87,7 +86,8 @@ export class Renderer extends React.Component<Props, State> {
 
 export type Props = {
   count: number,
-  counterStatus: CounterStatus;
+  counterError: string | null;
+  loading: boolean;
 
   decrement: () => void,
   increment: () => void,

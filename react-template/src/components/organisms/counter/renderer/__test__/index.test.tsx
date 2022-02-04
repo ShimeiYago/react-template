@@ -5,7 +5,8 @@ import { Renderer, Props } from '..';
 
 const basicProps: Props = {
   count: 0,
-  counterStatus: 'idle',
+  counterError: null,
+  loading: false,
 
   decrement: jest.fn(),
   increment: jest.fn(),
@@ -25,14 +26,14 @@ describe('Shallow Snapshot Tests', () => {
 
   it('loading', () => {
     const result = renderer.render(
-      <Renderer {...basicProps} counterStatus='loading' />
+      <Renderer {...basicProps} loading={true} />
     );
     expect(result).toMatchSnapshot();
   });
 
-  it('failed', () => {
+  it('with error', () => {
     const result = renderer.render(
-      <Renderer {...basicProps} counterStatus='failed' />
+      <Renderer {...basicProps} counterError='error' />
     );
     expect(result).toMatchSnapshot();
   });
