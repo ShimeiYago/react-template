@@ -1,4 +1,3 @@
-import React from 'react';
 import logo from 'images/logo.svg';
 import { Counter } from 'components/organisms/counter';
 import './index.css';
