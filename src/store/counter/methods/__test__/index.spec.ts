@@ -1,0 +1,87 @@
+import { fetchCount, incrementIfOdd, postCount } from "..";
+import { getRemoteCount, postRemoteCount } from "api/counter-api";
+
+jest.mock('api/counter-api');
+const dispatch = jest.fn();
+
+describe('fetchCount', () => {
+  beforeEach(async () => {
+    jest.resetAllMocks();
+  });
+
+  it('call requestStart at first', async () => {
+    (getRemoteCount as any).mockResolvedValue({count: 0});
+    await fetchCount()(dispatch);
+
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart')
+  });
+
+  it('call fetchSuccess if API successed', async () => {
+    (getRemoteCount as any).mockResolvedValue({count: 0});
+    await fetchCount()(dispatch);
+
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/fetchSuccess')
+  });
+
+  it('call requestFailure if API failed', async () => {
+    (getRemoteCount as any).mockRejectedValue(new Error);
+    await fetchCount()(dispatch);
+
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure')
+  });
+});
+
+describe('postCount', () => {
+  beforeEach(async () => {
+    jest.resetAllMocks();
+  });
+
+  it('call requestStart at first', async () => {
+    (postRemoteCount as any).mockResolvedValue({count: 0});
+    await postCount(0)(dispatch);
+
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart')
+  });
+
+  it('call postSuccess if API successed', async () => {
+    (postRemoteCount as any).mockResolvedValue({count: 0});
+    await postCount(0)(dispatch);
+
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/postSuccess')
+  });
+
+  it('call requestFailure if API failed', async () => {
+    (postRemoteCount as any).mockRejectedValue(new Error);
+    await postCount(0)(dispatch);
+
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure')
+  });
+});
+
+describe('incrementIfOdd', () => {
+  it('increment only if current value is odd', () => {
+    const getState = () => ({
+      counter: {
+        value: 3,
+        loading: false,
+        errorMsg: null,
+      }
+    });
+    incrementIfOdd(3)(dispatch, getState, {});
+
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount')
+  });
+
+  it('do not increment if current value is not odd', () => {
+    const getState = () => ({
+      counter: {
+        value: 2,
+        loading: false,
+        errorMsg: null,
+      }
+    });
+    incrementIfOdd(3)(dispatch, getState, {});
+
+    expect(dispatch.mock.calls[0]).toBe(undefined);
+  });
+});
