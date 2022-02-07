@@ -1,23 +1,21 @@
 import { Props, Renderer } from './renderer';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { useAppSelector, useAppDispatch } from 'store';
+import { selectCounterErrorMsg, selectCounterLoading, selectCounterValue } from 'store/counter/selector';
 import {
   decrement,
   increment,
   incrementByAmount,
-  fetchCount,
-  postCount,
-  incrementIfOdd,
-  selectCount,
-  selectCounterStatus,
-} from 'store/counter/counterSlice';
+} from 'store/counter/slice';
+import { fetchCount, incrementIfOdd, postCount } from 'store/counter/methods';
 
 export function Counter() {
   const dispatch = useAppDispatch();
 
   const props: Props = {
-    count: useAppSelector(selectCount),
-    counterStatus: useAppSelector(selectCounterStatus),
+    count: useAppSelector(selectCounterValue),
+    counterError: useAppSelector(selectCounterErrorMsg),
+    loading: useAppSelector(selectCounterLoading),
   
     decrement: () => dispatch(decrement()),
     increment: () => dispatch(increment()),
