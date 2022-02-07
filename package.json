@@ -23,6 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cover": "react-scripts test --coverage",
+    "test:cover:all": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,5 +45,17 @@
   "devDependencies": {
     "@types/react-test-renderer": "^17.0.1",
     "react-test-renderer": "^17.0.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/pages/**/index.{ts,tsx}",
+      "!**/components/organisms/**/index.{ts,tsx}",
+      "!**/store/index.ts",
+      "!**/index.tsx",
+      "!**/react-app-env.d.ts",
+      "!**/react-app-env.d.ts",
+      "!**/serviceWorker.ts"
+    ]
   }
 }
