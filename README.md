@@ -65,11 +65,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 For production release, please set API base URL in `.env.production.local`.
 
-
-## Author
-[ShimeiYago](https://github.com/ShimeiYago)
-
-
 ## API
 
 API is required for this application to work perfectly.
@@ -100,3 +95,6 @@ The mock API is already provided. Please use the following repository to run the
   "counter": 1
 }
 ```
+
+## Author
+[ShimeiYago](https://github.com/ShimeiYago)

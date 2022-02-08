@@ -54,7 +54,6 @@
       "!**/store/index.ts",
       "!**/index.tsx",
       "!**/react-app-env.d.ts",
-      "!**/react-app-env.d.ts",
       "!**/serviceWorker.ts"
     ]
   }
