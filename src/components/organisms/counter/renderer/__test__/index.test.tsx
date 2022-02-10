@@ -1,6 +1,5 @@
 import React from 'react';
-import { create } from 'react-test-renderer'
-import ShallowRenderer from 'react-test-renderer/shallow'
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { Renderer, Props } from '..';
 
 const basicProps: Props = {
@@ -14,7 +13,7 @@ const basicProps: Props = {
   incrementIfOdd: jest.fn(),
   fetchCount: jest.fn(),
   postCount: jest.fn(),
-}
+};
 
 describe('Shallow Snapshot Tests', () => {
   const renderer = ShallowRenderer.createRenderer();
@@ -25,15 +24,13 @@ describe('Shallow Snapshot Tests', () => {
   });
 
   it('loading', () => {
-    const result = renderer.render(
-      <Renderer {...basicProps} loading={true} />
-    );
+    const result = renderer.render(<Renderer {...basicProps} loading={true} />);
     expect(result).toMatchSnapshot();
   });
 
   it('with error', () => {
     const result = renderer.render(
-      <Renderer {...basicProps} counterError='error' />
+      <Renderer {...basicProps} counterError="error" />,
     );
     expect(result).toMatchSnapshot();
   });

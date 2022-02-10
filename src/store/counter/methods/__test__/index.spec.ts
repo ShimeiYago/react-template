@@ -1,60 +1,63 @@
-import { fetchCount, incrementIfOdd, postCount } from "..";
-import { getRemoteCount, postRemoteCount } from "api/counter-api";
+import { fetchCount, incrementIfOdd, postCount } from '..';
+import * as CounterApiModule from 'api/counter-api';
 
-jest.mock('api/counter-api');
 const dispatch = jest.fn();
+let getRemoteCountSpy: jest.SpyInstance;
+let postRemoteCountSpy: jest.SpyInstance;
 
 describe('fetchCount', () => {
   beforeEach(async () => {
     jest.resetAllMocks();
+    getRemoteCountSpy = jest.spyOn(CounterApiModule, 'getRemoteCount');
   });
 
   it('call requestStart at first', async () => {
-    (getRemoteCount as any).mockResolvedValue({count: 0});
-    await fetchCount()(dispatch);
+    getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart')
+    await fetchCount()(dispatch);
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call fetchSuccess if API successed', async () => {
-    (getRemoteCount as any).mockResolvedValue({count: 0});
-    await fetchCount()(dispatch);
+    getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    expect(dispatch.mock.calls[1][0].type).toBe('counter/fetchSuccess')
+    await fetchCount()(dispatch);
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/fetchSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
-    (getRemoteCount as any).mockRejectedValue(new Error);
-    await fetchCount()(dispatch);
+    getRemoteCountSpy.mockRejectedValue(new Error());
 
-    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure')
+    await fetchCount()(dispatch);
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
 
 describe('postCount', () => {
   beforeEach(async () => {
     jest.resetAllMocks();
+    postRemoteCountSpy = jest.spyOn(CounterApiModule, 'postRemoteCount');
   });
 
   it('call requestStart at first', async () => {
-    (postRemoteCount as any).mockResolvedValue({count: 0});
-    await postCount(0)(dispatch);
+    postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart')
+    await postCount(0)(dispatch);
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call postSuccess if API successed', async () => {
-    (postRemoteCount as any).mockResolvedValue({count: 0});
-    await postCount(0)(dispatch);
+    postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    expect(dispatch.mock.calls[1][0].type).toBe('counter/postSuccess')
+    await postCount(0)(dispatch);
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/postSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
-    (postRemoteCount as any).mockRejectedValue(new Error);
-    await postCount(0)(dispatch);
+    postRemoteCountSpy.mockRejectedValue(new Error());
 
-    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure')
+    await postCount(0)(dispatch);
+    expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
 
@@ -65,11 +68,11 @@ describe('incrementIfOdd', () => {
         value: 3,
         loading: false,
         errorMsg: null,
-      }
+      },
     });
     incrementIfOdd(3)(dispatch, getState, {});
 
-    expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount')
+    expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount');
   });
 
   it('do not increment if current value is not odd', () => {
@@ -78,7 +81,7 @@ describe('incrementIfOdd', () => {
         value: 2,
         loading: false,
         errorMsg: null,
-      }
+      },
     });
     incrementIfOdd(3)(dispatch, getState, {});
 

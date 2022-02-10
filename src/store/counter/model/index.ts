@@ -1,7 +1,7 @@
 export interface CounterState {
   value: number;
   loading: boolean;
-  errorMsg: string | null,
+  errorMsg: string | null;
 }
 
 export const initialState: CounterState = {
