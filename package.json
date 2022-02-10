@@ -47,6 +47,14 @@
     "react-test-renderer": "^17.0.2"
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
     "collectCoverageFrom": [
       "**/*.{ts,tsx}",
       "!**/pages/**/index.{ts,tsx}",
