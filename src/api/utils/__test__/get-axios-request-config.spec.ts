@@ -1,4 +1,4 @@
-import { getAxiosRequestConfig } from "../get-axios-request-config";
+import { getAxiosRequestConfig } from '../get-axios-request-config';
 
 describe('getAxiosRequestConfig', () => {
   it('returns default AxiosRequestConfig', () => {
@@ -11,7 +11,7 @@ describe('getAxiosRequestConfig', () => {
   it('handle parameters', () => {
     const param = {
       timeout: 6000,
-    }
+    };
     const actual = getAxiosRequestConfig(param);
     const expected = {
       timeout: 6000,

@@ -1,6 +1,8 @@
-import { AxiosRequestConfig } from 'axios'
+import { AxiosRequestConfig } from 'axios';
 
-export function getAxiosRequestConfig(config: AxiosRequestConfig = {}): AxiosRequestConfig {
+export function getAxiosRequestConfig(
+  config: AxiosRequestConfig = {},
+): AxiosRequestConfig {
   const axiosRequestConfig: AxiosRequestConfig = {
     ...defaultConfig,
     ...config,
@@ -10,4 +12,4 @@ export function getAxiosRequestConfig(config: AxiosRequestConfig = {}): AxiosReq
 
 const defaultConfig: AxiosRequestConfig = {
   timeout: 3000,
-}
+};

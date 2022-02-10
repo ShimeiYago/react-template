@@ -1,4 +1,4 @@
-import ShallowRenderer from 'react-test-renderer/shallow'
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { Renderer } from '..';
 
 describe('Shallow Snapshot Tests', () => {

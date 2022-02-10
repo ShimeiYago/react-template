@@ -1,14 +1,16 @@
-import { AxiosError } from 'axios'
+import { AxiosError } from 'axios';
 
 export function handleAxiosError(axiosError: AxiosError): ApiError {
-  if (axiosError.response) {  // when API is active but response includes error
+  if (axiosError.response) {
+    // when API is active but response includes error
     const error: ApiError = {
       status: axiosError.response.status,
       data: axiosError.response.data,
-      errorMsg: axiosError.message
+      errorMsg: axiosError.message,
     };
     return error;
-  } else {  // when API is not active
+  } else {
+    // when API is not active
     const error: ApiError = {
       status: 500,
       data: {},
@@ -19,7 +21,7 @@ export function handleAxiosError(axiosError: AxiosError): ApiError {
 }
 
 export type ApiError = {
-  status: number,
-  data: Object,
-  errorMsg: string,
-}
+  status: number;
+  data: unknown;
+  errorMsg: string;
+};

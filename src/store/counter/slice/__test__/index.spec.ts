@@ -6,7 +6,7 @@ import {
   incrementByAmount,
   postSuccess,
   requestFailure,
-  requestStart
+  requestStart,
 } from '..';
 import { CounterState } from '../../model';
 
@@ -16,7 +16,7 @@ describe('counter reducer', () => {
     loading: false,
     errorMsg: null,
   };
-  const loadingState = Object.assign(initialState, {loading: true});
+  const loadingState = Object.assign(initialState, { loading: true });
 
   it('should handle initial state', () => {
     expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
@@ -52,7 +52,7 @@ describe('counter reducer', () => {
     expect(actual.errorMsg).toEqual('error');
   });
 
-  it('should handle fetchSuccess', () => {    
+  it('should handle fetchSuccess', () => {
     const actual = counterReducer(loadingState, fetchSuccess(10));
     expect(actual.loading).toEqual(false);
     expect(actual.value).toEqual(10);

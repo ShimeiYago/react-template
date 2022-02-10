@@ -1,5 +1,5 @@
-import { AxiosError } from "axios";
-import { handleAxiosError } from "../handle-axios-error";
+import { AxiosError } from 'axios';
+import { handleAxiosError } from '../handle-axios-error';
 
 describe('handleAxiosError', () => {
   it('convert axiosError when API is active but response includes error', () => {
@@ -8,14 +8,14 @@ describe('handleAxiosError', () => {
         status: 404,
         data: {},
         config: {},
-        statusText: "",
+        statusText: '',
         headers: {},
       },
       message: 'not found',
       isAxiosError: true,
       toJSON: () => jest.fn(),
       config: {},
-      name: ""
+      name: '',
     };
     const actual = handleAxiosError(axiosError);
     const expected = {
@@ -32,7 +32,7 @@ describe('handleAxiosError', () => {
       isAxiosError: true,
       toJSON: () => jest.fn(),
       config: {},
-      name: ""
+      name: '',
     };
     const actual = handleAxiosError(axiosError);
     const expected = {

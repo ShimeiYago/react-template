@@ -79,24 +79,24 @@ export class Renderer extends React.Component<Props, State> {
     );
   }
 
-  protected setIncrementAmount(incrementAmount:string) {
+  protected setIncrementAmount(incrementAmount: string) {
     this.setState({ incrementAmount: incrementAmount });
   }
 }
 
 export type Props = {
-  count: number,
+  count: number;
   counterError: string | null;
   loading: boolean;
 
-  decrement: () => void,
-  increment: () => void,
-  incrementByAmount: (incrementValue: number) => void,
-  incrementIfOdd: (incrementValue: number) => void,
-  fetchCount: () => void,
-  postCount: (postValue:number) => void,
-}
+  decrement: () => void;
+  increment: () => void;
+  incrementByAmount: (incrementValue: number) => void;
+  incrementIfOdd: (incrementValue: number) => void;
+  fetchCount: () => void;
+  postCount: (postValue: number) => void;
+};
 
 type State = {
-  incrementAmount: string,
-}
+  incrementAmount: string;
+};

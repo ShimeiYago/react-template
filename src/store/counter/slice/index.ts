@@ -8,9 +8,11 @@ export const counterSlice = createSlice({
     increment(state) {
       state.value += 1;
     },
+
     decrement(state) {
       state.value -= 1;
     },
+
     incrementByAmount(state, action: PayloadAction<number>) {
       state.value += action.payload;
     },
@@ -19,6 +21,7 @@ export const counterSlice = createSlice({
       state.loading = true;
       state.errorMsg = null;
     },
+
     requestFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.errorMsg = action.payload;
@@ -28,6 +31,7 @@ export const counterSlice = createSlice({
       state.loading = false;
       state.value = action.payload;
     },
+
     postSuccess(state) {
       state.loading = false;
     },
