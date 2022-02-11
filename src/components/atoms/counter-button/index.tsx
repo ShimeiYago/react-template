@@ -11,9 +11,6 @@ export class CounterButton extends React.Component<Props> {
 
     let className: string;
     switch (variant) {
-      case 'default':
-        className = styles.button;
-        break;
       case 'async':
         className = styles.asyncButton;
         break;

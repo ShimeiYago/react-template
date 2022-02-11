@@ -1,24 +1,25 @@
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { CounterButton, Props } from '..';
 
-const props: Props = {
-  variant: 'async',
-  ariaLabel: 'label',
-  children: 'button',
-  onClick: jest.fn(),
-  disabled: true,
-};
+let wrapper: ShallowWrapper<Props, unknown, CounterButton>;
 
 describe('Shallow Snapshot Tests', () => {
-  const renderer = ShallowRenderer.createRenderer();
+  beforeEach(() => {
+    wrapper = shallow(<CounterButton />);
+  });
 
-  it('default', () => {
-    const result = renderer.render(<CounterButton />);
-    expect(result).toMatchSnapshot();
+  it('basic', () => {
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('with props', () => {
-    const result = renderer.render(<CounterButton {...props} />);
-    expect(result).toMatchSnapshot();
+    wrapper.setProps({
+      variant: 'async',
+      ariaLabel: 'label',
+      children: 'button',
+      onClick: jest.fn(),
+      disabled: true,
+    });
+    expect(wrapper).toMatchSnapshot();
   });
 });

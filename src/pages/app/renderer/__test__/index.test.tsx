@@ -1,11 +1,11 @@
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { Renderer } from '..';
 
-describe('Shallow Snapshot Tests', () => {
-  const renderer = ShallowRenderer.createRenderer();
+let wrapper: ShallowWrapper<unknown, unknown, Renderer>;
 
+describe('Shallow Snapshot Tests', () => {
   it('basic', () => {
-    const result = renderer.render(<Renderer />);
-    expect(result).toMatchSnapshot();
+    wrapper = shallow(<Renderer />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

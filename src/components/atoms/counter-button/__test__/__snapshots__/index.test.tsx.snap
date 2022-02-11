@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Shallow Snapshot Tests default 1`] = `
+exports[`Shallow Snapshot Tests basic 1`] = `
 <button
   className="button"
 />
