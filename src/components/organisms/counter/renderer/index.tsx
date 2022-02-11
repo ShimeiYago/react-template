@@ -1,4 +1,6 @@
 import React from 'react';
+import { CounterButton } from 'components/atoms/counter-button';
+import { CounterTextbox } from 'components/atoms/counter-textbox';
 import styles from './index.module.css';
 
 export class Renderer extends React.Component<Props, State> {
@@ -25,55 +27,46 @@ export class Renderer extends React.Component<Props, State> {
       <div>
         {counterError ? <div>{counterError}</div> : null}
         <div className={styles.row}>
-          <button
-            className={styles.button}
-            aria-label="Decrement value"
+          <CounterButton
+            ariaLabel="Decrement value"
             onClick={() => decrement()}
           >
             -
-          </button>
+          </CounterButton>
           <span className={styles.value}>{count}</span>
-          <button
-            className={styles.button}
-            aria-label="Increment value"
+          <CounterButton
+            ariaLabel="Increment value"
             onClick={() => increment()}
           >
             +
-          </button>
+          </CounterButton>
         </div>
         <div className={styles.row}>
-          <input
-            className={styles.textbox}
-            aria-label="Set increment amount"
+          <CounterTextbox
+            ariaLabel="Set increment amount"
             value={this.state.incrementAmount}
             onChange={(e) => this.setIncrementAmount(e.target.value)}
           />
-          <button
-            className={styles.button}
-            onClick={() => incrementByAmount(incrementValue)}
-          >
+          <CounterButton onClick={() => incrementByAmount(incrementValue)}>
             Add Amount
-          </button>
-          <button
-            className={styles.button}
-            onClick={() => incrementIfOdd(incrementValue)}
-          >
+          </CounterButton>
+          <CounterButton onClick={() => incrementIfOdd(incrementValue)}>
             Add If Odd
-          </button>
-          <button
-            className={styles.asyncButton}
+          </CounterButton>
+          <CounterButton
+            variant="async"
             onClick={() => fetchCount()}
             disabled={this.props.loading}
           >
             Fetch
-          </button>
-          <button
-            className={styles.asyncButton}
+          </CounterButton>
+          <CounterButton
+            variant="async"
             onClick={() => postCount(count)}
             disabled={this.props.loading}
           >
             Post
-          </button>
+          </CounterButton>
         </div>
       </div>
     );
