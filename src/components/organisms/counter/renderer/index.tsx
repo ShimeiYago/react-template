@@ -90,6 +90,6 @@ export type Props = {
   postCount: (postValue: number) => void;
 };
 
-type State = {
+export type State = {
   incrementAmount: string;
 };

@@ -1,24 +1,24 @@
-import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { CounterTextbox, Props } from '..';
 
-const props: Props = {
-  value: 'text',
-  ariaLabel: 'label',
-  disabled: false,
-  onChange: jest.fn(),
-};
+let wrapper: ShallowWrapper<Props, unknown, CounterTextbox>;
 
 describe('Shallow Snapshot Tests', () => {
-  const renderer = ShallowRenderer.createRenderer();
+  beforeEach(() => {
+    wrapper = shallow(<CounterTextbox />);
+  });
 
   it('basic', () => {
-    const result = renderer.render(<CounterTextbox />);
-    expect(result).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('with props', () => {
-    const result = renderer.render(<CounterTextbox {...props} />);
-    expect(result).toMatchSnapshot();
+    wrapper.setProps({
+      value: 'text',
+      ariaLabel: 'label',
+      disabled: false,
+      onChange: jest.fn(),
+    });
+    expect(wrapper).toMatchSnapshot();
   });
 });
