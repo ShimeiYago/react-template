@@ -21,6 +21,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:mock": "REACT_APP_MOCK=normal react-scripts start",
+    "start:mock:error": "REACT_APP_MOCK=error react-scripts start",
+    "start:mock:delay": "REACT_APP_MOCK=normal REACT_APP_MOCK_DELAY_TIME=2000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll",
     "test:cover": "react-scripts test --coverage --watchAll",

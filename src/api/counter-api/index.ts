@@ -1,13 +1,18 @@
 import { BASE_URL } from '../base-url';
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { handleAxiosError } from '../utils/handle-axios-error';
-import { getAxiosRequestConfig } from 'api/utils/get-axios-request-config';
+import { getAxiosInstance } from 'api/utils/get-axios-instance';
+import {
+  getCounterMockResponse,
+  postCounterMockResponse,
+} from '../mock/counter-response';
 
-export async function getRemoteCount(): Promise<Counter> {
+export async function getRemoteCount(): Promise<GetCounterResponse> {
+  const axiosInstance = getAxiosInstance({}, getCounterMockResponse);
+
   try {
-    const res: AxiosResponse<Counter> = await axios.get(
+    const res: AxiosResponse<GetCounterResponse> = await axiosInstance.get(
       `${BASE_URL}/counter`,
-      getAxiosRequestConfig(),
     );
     return res.data;
   } catch (error) {
@@ -16,14 +21,16 @@ export async function getRemoteCount(): Promise<Counter> {
   }
 }
 
-export async function postRemoteCount(amount: number): Promise<Counter> {
+export async function postRemoteCount(
+  amount: number,
+): Promise<PostCounterResponse> {
   const data = { count: amount };
+  const axiosInstance = getAxiosInstance({}, postCounterMockResponse);
 
   try {
-    const res: AxiosResponse<Counter> = await axios.post(
+    const res: AxiosResponse<PostCounterResponse> = await axiosInstance.post(
       `${BASE_URL}/counter`,
       data,
-      getAxiosRequestConfig(),
     );
     return res.data;
   } catch (error) {
@@ -32,6 +39,10 @@ export async function postRemoteCount(amount: number): Promise<Counter> {
   }
 }
 
-type Counter = {
+export type GetCounterResponse = {
+  count: number;
+};
+
+export type PostCounterResponse = {
   count: number;
 };
