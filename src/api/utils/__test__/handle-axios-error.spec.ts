@@ -20,7 +20,6 @@ describe('handleAxiosError', () => {
     const actual = handleAxiosError(axiosError);
     const expected = {
       status: 404,
-      data: {},
       errorMsg: 'not found',
     };
     expect(actual).toEqual(expected);
@@ -37,7 +36,6 @@ describe('handleAxiosError', () => {
     const actual = handleAxiosError(axiosError);
     const expected = {
       status: 500,
-      data: {},
       errorMsg: 'API error',
     };
     expect(actual).toEqual(expected);

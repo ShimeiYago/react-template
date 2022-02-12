@@ -18,7 +18,6 @@ describe('getRemoteCount', () => {
 
     const expectedApiError: ApiError = {
       status: 500,
-      data: {},
       errorMsg: 'Intentional API Error with mock',
     };
     await expect(getRemoteCount()).rejects.toEqual(expectedApiError);
@@ -42,7 +41,6 @@ describe('postRemoteCount', () => {
 
     const expectedApiError: ApiError = {
       status: 500,
-      data: {},
       errorMsg: 'Intentional API Error with mock',
     };
     await expect(postRemoteCount(1)).rejects.toEqual(expectedApiError);
