@@ -1,51 +1,50 @@
 import { ApiError } from 'api/utils/handle-axios-error';
-import axios from 'axios';
 import { getRemoteCount, postRemoteCount } from '..';
 
 describe('getRemoteCount', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    process.env.REACT_APP_MOCK = '';
   });
 
   it('handle nomal response', async () => {
-    axios.get = jest.fn().mockResolvedValue({ data: { count: 0 } });
+    process.env.REACT_APP_MOCK = 'normal';
 
     const response = await getRemoteCount();
-    expect(response.count).toBe(0);
+    expect(response.count).toBe(5);
   });
 
   it('handle error response', async () => {
-    axios.get = jest.fn().mockRejectedValue(new Error());
+    process.env.REACT_APP_MOCK = 'error';
 
     const expectedApiError: ApiError = {
       status: 500,
       data: {},
-      errorMsg: '',
+      errorMsg: 'Intentional API Error with mock',
     };
-    expect(getRemoteCount()).rejects.toEqual(expectedApiError);
+    await expect(getRemoteCount()).rejects.toEqual(expectedApiError);
   });
 });
 
 describe('postRemoteCount', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    process.env.REACT_APP_MOCK = '';
   });
 
   it('handle nomal response', async () => {
-    axios.post = jest.fn().mockResolvedValue({ data: { count: 1 } });
+    process.env.REACT_APP_MOCK = 'normal';
 
-    const response = await postRemoteCount(1);
-    expect(response.count).toBe(1);
+    const response = await postRemoteCount(5);
+    expect(response.count).toBe(5);
   });
 
   it('handle error response', async () => {
-    axios.post = jest.fn().mockRejectedValue(new Error());
+    process.env.REACT_APP_MOCK = 'error';
 
     const expectedApiError: ApiError = {
       status: 500,
       data: {},
-      errorMsg: '',
+      errorMsg: 'Intentional API Error with mock',
     };
-    expect(postRemoteCount(1)).rejects.toEqual(expectedApiError);
+    await expect(postRemoteCount(1)).rejects.toEqual(expectedApiError);
   });
 });

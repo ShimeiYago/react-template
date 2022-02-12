@@ -30,6 +30,18 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `npm start:mock`
+
+Runs the app with API mock.
+
+### `npm start:mock:error`
+
+Runs the app with API Error mock.
+
+### `npm start:mock:delay`
+
+Runs the app with "slow" API mock.
+
 ### `npm run test`
 
 Launches the test runner in the interactive watch mode.<br />
@@ -69,15 +81,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 For production release, please set API base URL in `.env.production.local`.
 
-## API
+## Expected API Interface
 
-API is required for this application to work perfectly.
-The mock API is already provided. Please use the following repository to run the mock API.
-
-[react-template-mock](https://github.com/ShimeiYago/react-template-mock)
-
-### Expected API Interface
-#### (GET) `{domain}/counter`
+### (GET) `{domain}/counter`
 **Response**
 ```
 {
@@ -85,7 +91,7 @@ The mock API is already provided. Please use the following repository to run the
 }
 ```
 
-#### (POST) `{domain}/counter`
+### (POST) `{domain}/counter`
 **Resquest**
 ```
 {
