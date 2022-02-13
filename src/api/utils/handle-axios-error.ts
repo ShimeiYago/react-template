@@ -5,7 +5,6 @@ export function handleAxiosError(axiosError: AxiosError): ApiError {
     // when API is active but response includes error
     const error: ApiError = {
       status: axiosError.response.status,
-      data: axiosError.response.data,
       errorMsg: axiosError.message,
     };
     return error;
@@ -13,7 +12,6 @@ export function handleAxiosError(axiosError: AxiosError): ApiError {
     // when API is not active
     const error: ApiError = {
       status: 500,
-      data: {},
       errorMsg: axiosError.message,
     };
     return error;
@@ -22,6 +20,5 @@ export function handleAxiosError(axiosError: AxiosError): ApiError {
 
 export type ApiError = {
   status: number;
-  data: unknown;
   errorMsg: string;
 };

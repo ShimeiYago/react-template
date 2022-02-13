@@ -35,7 +35,7 @@ export type Props = {
   variant: Variant;
   ariaLabel?: string;
   disabled?: boolean;
-  children?: React.ReactChild;
+  children?: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
