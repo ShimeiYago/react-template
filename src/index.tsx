@@ -7,6 +7,10 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { ErrorBoundary } from 'error-boundary';
 
+// Deactivate all console.log on production
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+process.env.NODE_ENV === 'production' && (console.log = () => {});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
