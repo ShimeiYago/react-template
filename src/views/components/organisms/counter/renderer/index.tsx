@@ -1,6 +1,6 @@
 import React from 'react';
-import { CounterButton } from 'components/atoms/counter-button';
-import { CounterTextbox } from 'components/atoms/counter-textbox';
+import { CounterButton } from 'views/components/atoms/counter-button';
+import { CounterTextbox } from 'views/components/atoms/counter-textbox';
 import styles from './index.module.css';
 
 export class Renderer extends React.Component<Props, State> {
