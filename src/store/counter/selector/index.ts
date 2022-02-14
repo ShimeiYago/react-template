@@ -1,6 +1,10 @@
 import { RootState } from 'store';
 
-export const selectCounterValue = (state: RootState) => state.counter.value;
-export const selectCounterLoading = (state: RootState) => state.counter.loading;
-export const selectCounterErrorMsg = (state: RootState) =>
+type CounterRootState = Pick<RootState, 'counter'>;
+
+export const selectCounterValue = (state: CounterRootState) =>
+  state.counter.value;
+export const selectCounterLoading = (state: CounterRootState) =>
+  state.counter.loading;
+export const selectCounterErrorMsg = (state: CounterRootState) =>
   state.counter.errorMsg;

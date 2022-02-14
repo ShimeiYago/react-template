@@ -1,5 +1,7 @@
-import {
-  counterReducer,
+import { counterReducer, counterSlice } from '..';
+import { CounterState } from '../../model';
+
+const {
   decrement,
   fetchSuccess,
   increment,
@@ -7,8 +9,7 @@ import {
   postSuccess,
   requestFailure,
   requestStart,
-} from '..';
-import { CounterState } from '../../model';
+} = counterSlice.actions;
 
 describe('counter reducer', () => {
   const initialState: CounterState = {
