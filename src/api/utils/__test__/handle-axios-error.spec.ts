@@ -5,13 +5,13 @@ describe('handleAxiosError', () => {
   it('convert axiosError when API is active but response includes error', () => {
     const axiosError: AxiosError = {
       response: {
-        status: 404,
-        data: {},
+        status: 409,
+        data: { errors: ['id is already existing.'] },
         config: {},
         statusText: '',
         headers: {},
       },
-      message: 'not found',
+      message: 'conflict',
       isAxiosError: true,
       toJSON: () => jest.fn(),
       config: {},
@@ -19,8 +19,9 @@ describe('handleAxiosError', () => {
     };
     const actual = handleAxiosError(axiosError);
     const expected = {
-      status: 404,
-      errorMsg: 'not found',
+      status: 409,
+      data: { errors: ['id is already existing.'] },
+      errorMsg: 'conflict',
     };
     expect(actual).toEqual(expected);
   });
@@ -36,6 +37,7 @@ describe('handleAxiosError', () => {
     const actual = handleAxiosError(axiosError);
     const expected = {
       status: 500,
+      data: {},
       errorMsg: 'API error',
     };
     expect(actual).toEqual(expected);
