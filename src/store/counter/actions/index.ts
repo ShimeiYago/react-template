@@ -1,16 +1,21 @@
 import { AppDispatch, AppThunk } from 'store';
-import { getRemoteCount, postRemoteCount } from 'api/counter-api';
-import {
-  fetchSuccess,
-  incrementByAmount,
-  postSuccess,
-  requestFailure,
-  requestStart,
-} from '../slice';
+import { counterSlice } from '../slice';
 import { selectCounterValue } from '../selector';
+import { getRemoteCount, postRemoteCount } from 'api/counter-api';
 import { ApiError } from 'api/utils/handle-axios-error';
 
-// fetchCount methods
+// basic actions
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  requestStart,
+  requestFailure,
+  fetchSuccess,
+  postSuccess,
+} = counterSlice.actions;
+
+// fetchCount action
 export const fetchCount = () => async (dispatch: AppDispatch) => {
   dispatch(requestStart());
 
@@ -23,7 +28,7 @@ export const fetchCount = () => async (dispatch: AppDispatch) => {
   }
 };
 
-// postCount method
+// postCount action
 export const postCount = (count: number) => async (dispatch: AppDispatch) => {
   dispatch(requestStart());
 
@@ -36,6 +41,7 @@ export const postCount = (count: number) => async (dispatch: AppDispatch) => {
   }
 };
 
+// incrementIfOdd action
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 export const incrementIfOdd =

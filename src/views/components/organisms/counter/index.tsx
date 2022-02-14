@@ -6,8 +6,14 @@ import {
   selectCounterLoading,
   selectCounterValue,
 } from 'store/counter/selector';
-import { decrement, increment, incrementByAmount } from 'store/counter/slice';
-import { fetchCount, incrementIfOdd, postCount } from 'store/counter/methods';
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+  fetchCount,
+  incrementIfOdd,
+  postCount,
+} from 'store/counter/actions';
 
 export function Counter() {
   const dispatch = useAppDispatch();

@@ -38,16 +38,5 @@ export const counterSlice = createSlice({
   },
 });
 
-// actions
-export const {
-  increment,
-  decrement,
-  incrementByAmount,
-  requestStart,
-  requestFailure,
-  fetchSuccess,
-  postSuccess,
-} = counterSlice.actions;
-
 // reducer
 export const counterReducer = counterSlice.reducer;

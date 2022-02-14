@@ -14,15 +14,15 @@ describe('counter selector', () => {
     } as CounterState,
   };
 
-  it('selectCounterValue should counter value', () => {
+  it('selectCounterValue should return counter value', () => {
     expect(selectCounterValue(rootState)).toEqual(3);
   });
 
-  it('selectCounterLoading should counter value', () => {
+  it('selectCounterLoading should return counter loading state', () => {
     expect(selectCounterLoading(rootState)).toEqual(false);
   });
 
-  it('selectCounterValue should counter value', () => {
+  it('selectCounterValue should return counter error meseage', () => {
     expect(selectCounterErrorMsg(rootState)).toEqual('error');
   });
 });
