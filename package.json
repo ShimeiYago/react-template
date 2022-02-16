@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
@@ -81,7 +81,7 @@
   },
   "lint-staged": {
     "*.{ts,js,tsx}": [
-      "eslint --fix"
+      "eslint --fix --max-warnings=0"
     ]
   }
 }
