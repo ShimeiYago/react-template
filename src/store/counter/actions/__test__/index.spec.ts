@@ -65,12 +65,15 @@ describe('incrementIfOdd', () => {
   it('increment only if current value is odd', () => {
     const getState = () => ({
       counter: {
-        value: 3,
+        value: 3, // odd
         loading: false,
         errorMsg: null,
       },
     });
-    incrementIfOdd(3)(dispatch, getState, {});
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = incrementIfOdd(3) as any;
+    appThunk(dispatch, getState, {});
 
     expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount');
   });
@@ -78,12 +81,15 @@ describe('incrementIfOdd', () => {
   it('do not increment if current value is not odd', () => {
     const getState = () => ({
       counter: {
-        value: 2,
+        value: 2, // not odd
         loading: false,
         errorMsg: null,
       },
     });
-    incrementIfOdd(3)(dispatch, getState, {});
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = incrementIfOdd(3) as any;
+    appThunk(dispatch, getState, {});
 
     expect(dispatch.mock.calls[0]).toBe(undefined);
   });
