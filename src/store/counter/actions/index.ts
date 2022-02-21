@@ -23,7 +23,7 @@ export const fetchCount = (): AppThunk => async (dispatch) => {
     const res = await getRemoteCount();
     dispatch(fetchSuccess(res.count));
   } catch (error) {
-    const apiError = error as ApiError;
+    const apiError = error as ApiError<unknown>;
     dispatch(requestFailure(apiError.errorMsg));
   }
 };
@@ -38,7 +38,7 @@ export const postCount = (): AppThunk => async (dispatch, getState) => {
     await postRemoteCount(count);
     dispatch(postSuccess());
   } catch (error) {
-    const apiError = error as ApiError;
+    const apiError = error as ApiError<unknown>;
     dispatch(requestFailure(apiError.errorMsg));
   }
 };
