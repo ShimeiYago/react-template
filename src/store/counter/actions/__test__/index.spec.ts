@@ -5,6 +5,14 @@ const dispatch = jest.fn();
 let getRemoteCountSpy: jest.SpyInstance;
 let postRemoteCountSpy: jest.SpyInstance;
 
+const getState = () => ({
+  counter: {
+    value: 0,
+    loading: false,
+    errorMsg: null,
+  },
+});
+
 describe('fetchCount', () => {
   beforeEach(async () => {
     jest.resetAllMocks();
@@ -14,21 +22,21 @@ describe('fetchCount', () => {
   it('call requestStart at first', async () => {
     getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await fetchCount()(dispatch);
+    await fetchCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call fetchSuccess if API successed', async () => {
     getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await fetchCount()(dispatch);
+    await fetchCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[1][0].type).toBe('counter/fetchSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
     getRemoteCountSpy.mockRejectedValue(new Error());
 
-    await fetchCount()(dispatch);
+    await fetchCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
@@ -42,54 +50,48 @@ describe('postCount', () => {
   it('call requestStart at first', async () => {
     postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await postCount(0)(dispatch);
+    await postCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call postSuccess if API successed', async () => {
     postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await postCount(0)(dispatch);
+    await postCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[1][0].type).toBe('counter/postSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
     postRemoteCountSpy.mockRejectedValue(new Error());
 
-    await postCount(0)(dispatch);
+    await postCount()(dispatch, getState, {});
     expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
 
 describe('incrementIfOdd', () => {
   it('increment only if current value is odd', () => {
-    const getState = () => ({
+    const getStateOdd = () => ({
       counter: {
         value: 3, // odd
         loading: false,
         errorMsg: null,
       },
     });
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const appThunk = incrementIfOdd(3) as any;
-    appThunk(dispatch, getState, {});
+    incrementIfOdd(3)(dispatch, getStateOdd, {});
 
     expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount');
   });
 
   it('do not increment if current value is not odd', () => {
-    const getState = () => ({
+    const getStateNotOdd = () => ({
       counter: {
         value: 2, // not odd
         loading: false,
         errorMsg: null,
       },
     });
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const appThunk = incrementIfOdd(3) as any;
-    appThunk(dispatch, getState, {});
+    incrementIfOdd(3)(dispatch, getStateNotOdd, {});
 
     expect(dispatch.mock.calls[0]).toBe(undefined);
   });
