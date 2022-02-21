@@ -22,21 +22,30 @@ describe('fetchCount', () => {
   it('call requestStart at first', async () => {
     getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await fetchCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = fetchCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call fetchSuccess if API successed', async () => {
     getRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await fetchCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = fetchCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[1][0].type).toBe('counter/fetchSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
     getRemoteCountSpy.mockRejectedValue(new Error());
 
-    await fetchCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = fetchCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
@@ -50,21 +59,30 @@ describe('postCount', () => {
   it('call requestStart at first', async () => {
     postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await postCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = postCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[0][0].type).toBe('counter/requestStart');
   });
 
   it('call postSuccess if API successed', async () => {
     postRemoteCountSpy.mockResolvedValue({ count: 0 });
 
-    await postCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = postCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[1][0].type).toBe('counter/postSuccess');
   });
 
   it('call requestFailure if API failed', async () => {
     postRemoteCountSpy.mockRejectedValue(new Error());
 
-    await postCount()(dispatch, getState, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = postCount() as any;
+    await appThunk(dispatch, getState, {});
+
     expect(dispatch.mock.calls[1][0].type).toBe('counter/requestFailure');
   });
 });
@@ -78,7 +96,9 @@ describe('incrementIfOdd', () => {
         errorMsg: null,
       },
     });
-    incrementIfOdd(3)(dispatch, getStateOdd, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = incrementIfOdd(3) as any;
+    appThunk(dispatch, getStateOdd, {});
 
     expect(dispatch.mock.calls[0][0].type).toBe('counter/incrementByAmount');
   });
@@ -91,7 +111,9 @@ describe('incrementIfOdd', () => {
         errorMsg: null,
       },
     });
-    incrementIfOdd(3)(dispatch, getStateNotOdd, {});
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const appThunk = incrementIfOdd(3) as any;
+    appThunk(dispatch, getStateNotOdd, {});
 
     expect(dispatch.mock.calls[0]).toBe(undefined);
   });
