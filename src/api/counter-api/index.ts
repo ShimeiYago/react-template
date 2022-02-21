@@ -35,7 +35,7 @@ export async function postRemoteCount(
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError;
-    throw handleAxiosError<{ b: string }>(axiosError);
+    throw handleAxiosError(axiosError);
   }
 }
 
