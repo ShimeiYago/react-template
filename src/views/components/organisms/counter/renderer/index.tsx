@@ -27,17 +27,11 @@ export class Renderer extends React.Component<Props, State> {
       <div>
         {counterError ? <div>{counterError}</div> : null}
         <div className={styles.row}>
-          <CounterButton
-            ariaLabel="Decrement value"
-            onClick={() => decrement()}
-          >
+          <CounterButton ariaLabel="Decrement value" onClick={() => decrement()}>
             -
           </CounterButton>
           <span className={styles.value}>{count}</span>
-          <CounterButton
-            ariaLabel="Increment value"
-            onClick={() => increment()}
-          >
+          <CounterButton ariaLabel="Increment value" onClick={() => increment()}>
             +
           </CounterButton>
         </div>
@@ -50,21 +44,11 @@ export class Renderer extends React.Component<Props, State> {
           <CounterButton onClick={() => incrementByAmount(incrementValue)}>
             Add Amount
           </CounterButton>
-          <CounterButton onClick={() => incrementIfOdd(incrementValue)}>
-            Add If Odd
-          </CounterButton>
-          <CounterButton
-            variant="async"
-            onClick={() => fetchCount()}
-            disabled={this.props.loading}
-          >
+          <CounterButton onClick={() => incrementIfOdd(incrementValue)}>Add If Odd</CounterButton>
+          <CounterButton variant="async" onClick={() => fetchCount()} disabled={this.props.loading}>
             Fetch
           </CounterButton>
-          <CounterButton
-            variant="async"
-            onClick={() => postCount()}
-            disabled={this.props.loading}
-          >
+          <CounterButton variant="async" onClick={() => postCount()} disabled={this.props.loading}>
             Post
           </CounterButton>
         </div>
