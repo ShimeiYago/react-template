@@ -88,9 +88,7 @@ describe('postCount', () => {
 describe('setIncrementAmount', () => {
   it('is called when textbox is changed and changes incrementAmount state', () => {
     wrapper = shallow(<Renderer {...basicProps} />);
-    wrapper
-      .find('CounterTextbox')
-      .simulate('change', { target: { value: 'value' } });
+    wrapper.find('CounterTextbox').simulate('change', { target: { value: 'value' } });
 
     expect(wrapper.state().incrementAmount).toBe('value');
   });

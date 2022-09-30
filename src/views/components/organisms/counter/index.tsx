@@ -25,10 +25,8 @@ export function Counter() {
 
     decrement: () => dispatch(decrement()),
     increment: () => dispatch(increment()),
-    incrementByAmount: (incrementValue: number) =>
-      dispatch(incrementByAmount(incrementValue)),
-    incrementIfOdd: (incrementValue: number) =>
-      dispatch(incrementIfOdd(incrementValue)),
+    incrementByAmount: (incrementValue: number) => dispatch(incrementByAmount(incrementValue)),
+    incrementIfOdd: (incrementValue: number) => dispatch(incrementIfOdd(incrementValue)),
     fetchCount: () => dispatch(fetchCount()),
     postCount: () => dispatch(postCount()),
   };

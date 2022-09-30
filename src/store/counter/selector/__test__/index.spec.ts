@@ -1,8 +1,4 @@
-import {
-  selectCounterErrorMsg,
-  selectCounterLoading,
-  selectCounterValue,
-} from '..';
+import { selectCounterErrorMsg, selectCounterLoading, selectCounterValue } from '..';
 import { CounterState } from '../../model';
 
 describe('counter selector', () => {
